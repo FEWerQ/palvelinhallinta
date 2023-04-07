@@ -1,4 +1,4 @@
-# Salt+Vagrant testaus
+# Salt & Vagrant testaus
 Käyttöympäristönä Ubuntu 22.10 Kinetic ja laitteena ThinkPad W540 jossa myös dualboot Windows 10 eri levyllä.
 Käyttöjärjestelmä on ns. clean install, eli poistin edellisen Ubuntun ja alustin koko ssd:n.
 Versiot ja päivitykset ladattu 7.4.2023.
