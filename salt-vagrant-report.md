@@ -2,8 +2,7 @@
 Käyttöympäristönä Ubuntu 22.10 Kinetic ja laitteena ThinkPad W540 jossa myös dualboot Windows 10 eri levyllä.
 Käyttöjärjestelmä on ns. clean install, eli poistin edellisen Ubuntun ja alustin koko ssd:n.
 Versiot ja päivitykset ladattu 7.4.2023.
-
-Versiokuva:
+![kuvakaappaus versiosta](screenshots/01-01-versio.png)
 
 Tehtävän rakennetta voi seurata: https://terokarvinen.com/2023/salt-vagrant/
 ## Ohjelmistojen asennus
@@ -28,15 +27,23 @@ Käynnistää prosessin ja luo koneet.
 Kirjaudutaan masteriin ja hyväksytään minionit.
 > vagrant ssh tmaster
 > sudo salt-key -A
-> 
+
+![salt, koneiden luonti](screenshots/01-03-accept_minions.png)
+
 ## Testaus
 Varmistetaan yhteys ping-testillä sekä lähettämällä komento.
 > sudo salt '*' test.ping
 > sudo salt '*' cmd.run 'hostname -I'
 
+![salt, tests](screenshots/01-04-minion_command.png)
+
 Saltin grains komennoilla voidaan tarkistaa kaikki oleellinen listaamalla mitä halutaan tietää komennon parametreiksi.
 Aiheesta:  https://docs.saltproject.io/salt/user-guide/en/latest/topics/grains.html
+
 > sudo salt '*' grains.item osfinger ipv4
+
+![salt grains](screenshots/01-05-salt_grains.png)
+
 ### Masterin toimintojen testaus
 Testataan tiedostojen luominen yksinkertaisella "kysymyksellä".
 > sudo salt '*' state.single file.managed '/tmp/see-you-at-terokarvinen-com'
@@ -44,17 +51,26 @@ Testataan tiedostojen luominen yksinkertaisella "kysymyksellä".
 Seuraavaksi sama komento mutta määritettiin tuloste "terse", eli niukkasanainen/ytimekäs.
 > sudo salt --state-output=terse '*' state.single file.managed '/tmp/see-you-at-terokarvinen-com'
 
+![tiedostojen luominen](screenshots/01-06-file_managed.png)
+
 Sama idea mutta asennetaan apache molemmille minioneille, ja laitetaan se päälle.
 > sudo salt '*' state.single pkg.installed apache2
 > sudo salt '*' state.single service.running apache2
+
+
+![ohjelman asennus](screenshots/01-07-service_install.png)
 
 Kokeillaan valehteliko apache meille, eli testataan onko se oikeasti päällä:
 > sudo apt-get -y install curl
 > curl -s 192.168.56.102|grep title
 
+![curl test](screenshots/01-08-curl_test1.png)
+
 Hienoa, sitten tapetaan apache ja testataan ettei se varmasti ole päällä.
 > sudo salt '*' state.single service.dead apache2
 > curl 192.168.56.102
+
+![curl test delete](screenshots/01-09-curl_test2.png)
 
 ### Käyttäjien manipulointi
 
@@ -64,6 +80,8 @@ Luodaan käyttäjä *terote01* ja muokataan sitä.
 
 Ei ollut hyvä käyttäjä, yritetään poistaa.
 > sudo salt '*' state.single user.absent terote01
+
+![käyttäjän poisto](screenshots/01-10-create_user.png)
 
 ## Infraa koodina
 
@@ -76,6 +94,8 @@ Init.sls sisälle:
 
 Ajetaan yllä luotu hello.
 > sudo salt '*' state.apply hello
+
+![ajetaan hello kaikkialla](screenshots/01-11-run_hello.png)
 
 ### top.sls
 https://docs.saltproject.io/en/latest/ref/states/top.html
@@ -91,6 +111,10 @@ Tiedostoon sisälletään yksinkertaine: "suorittakaa kaikki: hello" -ohje.
 > 
 > &nbsp;&nbsp;&nbsp;&nbsp;- hello
 
-
 > cat /srv/salt/top.sls
+
+![top file tarkistus](screenshots/01-12-top_file.png)
+
 > sudo salt '*' state.apply
+
+![top file ajo](screenshots/01-13-run_top_file.png)
