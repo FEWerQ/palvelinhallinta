@@ -26,6 +26,7 @@ Käynnistää prosessin ja luo koneet.
 
 Kirjaudutaan masteriin ja hyväksytään minionit.
 > vagrant ssh tmaster
+
 > sudo salt-key -A
 
 ![salt, koneiden luonti](screenshots/01-03-accept_minions.png)
