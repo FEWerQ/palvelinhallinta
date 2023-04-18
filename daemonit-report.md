@@ -8,3 +8,10 @@ Asennettuna SSH jo valmiina orjille.
 ## Setup
 Muokataan ssh:n configurointi tiedostosta portit auki ja määrätään mitä tiedostoa käytetään:
 
+> sudoedit /etc/ssh/ssh_config
+
+![opened ports](screenshots/02-ports_open.png)
+
+Portti 25565 on epävirallinen Minecraft (Java Edition) multiplayer server portti. Käytin wikipediasta löytyvää [listaa](https://en.wikipedia.org/wiki/List_of_TCP_and_UDP_port_numbers#Well-known_ports).
+
+192.168.56.100
