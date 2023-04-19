@@ -32,20 +32,21 @@ Vietin aikaa tutustuen Githubin omaan CLI:hin. Totesin että nyt minun ei tätä
 ### Muutos
 
 Git ei antanut muokata ilman tunnistautumista jollain tasolla, joten jouduin antamaan nimen ja sähköpostin. Entiteetille nimi ns.
+![muutos1](screenshots/h3-muutos1.png)
 
 > git config --global user.email "wjamesimaki@gmail.com"
 > git config --global user.name "Wennu M"
 > git add. && git commit; git pull && git push
-
+![muutos2](screenshots/h3-muutos2.png)
 Tämän jälkeen muutokset saatiin näkyviin githubissa.
-
+![newFolder](screenshots/h3-newFolder.png)
 ### Virhe
 
 Loin tiedoston nimeltä virhe ja sitten palasin aiemman commitin antamaan versioon, täten poistaen tiedoston.
-
+![error](screenshots/h3-error.png)
 
 ## Logi
 
 Avasin login ja näin sieltä GitHub käyttäjäni luoman repon, sekä myöhemmän commitin uudelta käyttäjältäni. Näistä näkee mihin branchiin muutoksen menevät ja milloin.
 
-
+![log](screenshots/h3-log.png)
