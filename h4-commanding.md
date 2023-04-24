@@ -113,7 +113,7 @@ Kirjauduin sisään t001 koneelle ja ajoin heti skriptin komennolla helloworld.p
 > helloworld.py
 Oli helppo todeta että skriptien asennus onnistui.
 
-## Ohjelman asennus orjille
+## Ohjelman asennus herralle
 
 Seuraavaksi pyrin asentamaan tekstinkäsittelyohjelma Micron orjakoneille automaagisesti. Tämä käytiin luennolla läpi.
 
@@ -127,3 +127,16 @@ Tiedosto täytyy purkaa, sillä se on tiivistetty (gz tiedosto).
 Kopioin micro-tiedoston syntyneestä kansiosta ohjelmille luotuun jakelukansioon saltin alla.
 > sudo cp ~/micro-2.1.11/micro .
 
+## Asennus orjille
+
+Loin ensimmäisenä oman kansion nimeltä "default-softwares" polkuun /srv/salt "skripti" kansion rinnalle.
+Kansion sisälle init.sls tiedosto, ja tiedostoon seuraava:
+
+
+> > /usr/local/bin/default-softwares:
+> > 
+> >   file.managed:
+> >   
+> >     - mode: '0755'
+> >     
+> >     - source: "salt://default-softwares/micro"
