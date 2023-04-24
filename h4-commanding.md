@@ -21,13 +21,13 @@ Muokkasin skriptin sisälle käskyn joka ilmoittaa terminaalissa mitä se tekee 
 > >
 > > ping -c 3 www.hs.fi
 
-## Testi
+### Testi
 
 Tämän jälkeen on helppo heti testata skripti kutsumalla sitä.
 
 > sh hs-ping.sh
 
-## Oikeudet ja siirto käyttäjille
+### Oikeudet ja siirto käyttäjille
 
 Annetaan oikeudet suorittaa skripti kaikille. Komennossa ugo tarkoittaa U = tiedoston omistaja, eli user, G = ryhmään kuuluvat, eli group, O = muut, eli other. X = suoritusoikeus eli execute.
 
@@ -40,7 +40,31 @@ Tiedosto on nyt valmis ja sen voi kopioida käyttäjille. Polku "/usr/local/bin"
 > ls -l
 
 Voidaan todeta että suoritusoikeudet ovat varmasti säilyneet ja ollaan kopioitu haluttu asia.
+
 Jälleen on hyvä aika testata että kaikki toimii:
 
 > hs-ping.sh
 
+## hello.py - Python skripti
+
+Python on minulle uusi juttu, joten teen vanhasta tutun fizz buzz harjoituksen. Tarkistaen vain W3Schoolsista tarvittaessa kirjoitusmuodon.
+
+Toistoa aiemmasta; luodaan tiedosto python skriptille, annetaan siihen ajo-oikeudet kaikille, siirretään se kaikkien käyttäjien käytettäväksi.
+
+> touch helloworld.py
+> micro helloworld.py
+> > #!/usr/bin/python
+> > 
+> > print("Hello world, here's fuzzvyzz to 30.")
+> > 
+> > for i in range(1,31):
+> > output = ""
+> > 
+> > if i % 3 == 0:
+> >   output += "Fizz"
+> > if i % 5 == 0:
+> >   output += "Buzz"
+> >   
+> > if output == "":
+> >     output = i
+> > print(output)
