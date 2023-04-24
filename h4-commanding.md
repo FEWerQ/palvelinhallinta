@@ -52,19 +52,26 @@ Python on minulle uusi juttu, joten teen vanhasta tutun fizz buzz harjoituksen. 
 Toistoa aiemmasta; luodaan tiedosto python skriptille, annetaan siihen ajo-oikeudet kaikille, siirretään se kaikkien käyttäjien käytettäväksi.
 
 > touch helloworld.py
+> 
 > micro helloworld.py
 > > #!/usr/bin/python
 > > 
 > > print("Hello world, here's fuzzvyzz to 30.")
 > > 
 > > for i in range(1,31):
+> > 
 > > output = ""
 > > 
 > > if i % 3 == 0:
+> > 
 > >   output += "Fizz"
+> >   
 > > if i % 5 == 0:
+> > 
 > >   output += "Buzz"
 > >   
 > > if output == "":
-> >     output = i
+> > 
+> >    output = i
+> >     
 > > print(output)
