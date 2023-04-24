@@ -75,3 +75,31 @@ Toistoa aiemmasta; luodaan tiedosto python skriptille, annetaan siihen ajo-oikeu
 > >    output = i
 > >     
 > > print(output)
+> chmod ugo+x helloworld.py
+> sudo cp helloworld.py /usr/local/bin
+
+Kun olin siirtänyt helloworld.py /usr/local/bin, tajusin ettei skripti enää toiminut. Ilmeisesti se ei osannut enää hakea mitä vain pythonia, vaan sille piti määrätä tietty versio. Tässä tapauksessa python3.
+
+> #!/usr/bin/python
+> 
+> #!/usr/bin/python3
+
+Pieni muutos.
+
+## Jako orjille
+
+Kopioin helloworld.py saltin omaan alakansioon mihin skriptit voi keskittää helpompaa käyttöä varten. Näin ne on myös tallennettu paikkaan joka ei niin herkästi muutu.
+
+> sudo cp helloworld.py /srv/salt/skripti
+
+Sitten muokataan init.sls tiedosto jolla orjille asennettavat asiat määritellään.
+
+> micro init.sls
+> > /usr/local/bin/helloworld.py:
+> > 
+> >   file.managed:
+> >   
+> >     - mode: '0755'
+> >     
+> >     - source: salt://skripti/helloworld.py
+
