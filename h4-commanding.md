@@ -92,7 +92,7 @@ Kopioin helloworld.py saltin omaan alakansioon mihin skriptit voi keskittää he
 
 > sudo cp helloworld.py /srv/salt/skripti
 
-Sitten muokataan init.sls tiedosto jolla orjille asennettavat asiat määritellään.
+Muokataan init.sls tiedosto jolla orjille asennettavat asiat määritellään.
 
 > micro init.sls
 > > /usr/local/bin/helloworld.py:
@@ -102,4 +102,28 @@ Sitten muokataan init.sls tiedosto jolla orjille asennettavat asiat määritell�
 > >     - mode: '0755'
 > >     
 > >     - source: salt://skripti/helloworld.py
+
+Lähetetään orjakoneille uudet tilat joita ylläpitää:
+
+> sudo salt '*' state.apply skripti
+
+## Testaus orjilla
+
+Kirjauduin sisään t001 koneelle ja ajoin heti skriptin komennolla helloworld.py.
+> helloworld.py
+Oli helppo todeta että skriptien asennus onnistui.
+
+## Ohjelman asennus orjille
+
+Seuraavaksi pyrin asentamaan tekstinkäsittelyohjelma Micron orjakoneille automaagisesti. Tämä käytiin luennolla läpi.
+
+Ensimmäinen askel on ladata micro.
+> wget https://github.com/zyedidia/micro/releases/download/v2.0.11/micro-2.0.11-linux64-static.tar.gz
+Tällä haetaan githubista haluttu versio, tämä valitaan oman käyttöjärjestelmän ja laitteiston mukaan.
+
+Tiedosto täytyy purkaa, sillä se on tiivistetty (gz tiedosto).
+> tar -xf micro-2.0.11-linux64-static.tar.gz
+
+Kopioin micro-tiedoston syntyneestä kansiosta ohjelmille luotuun jakelukansioon saltin alla.
+> sudo cp ~/micro-2.1.11/micro .
 
