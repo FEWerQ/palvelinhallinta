@@ -26,7 +26,7 @@ Muokkasin skriptin sisälle käskyn joka ilmoittaa terminaalissa mitä se tekee 
 Tämän jälkeen on helppo heti testata skripti kutsumalla sitä.
 
 > sh hs-ping.sh
-
+![pingtest1](screenshots/h4-pingtest1.png)
 ### Oikeudet ja siirto käyttäjille
 
 Annetaan oikeudet suorittaa skripti kaikille. Komennossa ugo tarkoittaa U = tiedoston omistaja, eli user, G = ryhmään kuuluvat, eli group, O = muut, eli other. X = suoritusoikeus eli execute.
@@ -38,13 +38,13 @@ Tiedosto on nyt valmis ja sen voi kopioida käyttäjille. Polku "/usr/local/bin"
 > sudo cp hs-ping.sh /usr/local/bin
 > cd /usr/local/bin
 > ls -l
-
+![execution priviledges](screenshots/h4-xrights.png)
 Voidaan todeta että suoritusoikeudet ovat varmasti säilyneet ja ollaan kopioitu haluttu asia.
 
 Jälleen on hyvä aika testata että kaikki toimii:
 
 > hs-ping.sh
-
+![pingtest2](screenshots/h4-pingtest2.png)
 ## hello.py - Python skripti
 
 Python on minulle uusi juttu, joten teen vanhasta tutun fizz buzz harjoituksen. Tarkistaen vain W3Schoolsista tarvittaessa kirjoitusmuodon.
@@ -77,7 +77,7 @@ Toistoa aiemmasta; luodaan tiedosto python skriptille, annetaan siihen ajo-oikeu
 > > print(output)
 > chmod ugo+x helloworld.py
 > sudo cp helloworld.py /usr/local/bin
-
+![python code](screenshots/h4-python_code.png)
 Kun olin siirtänyt helloworld.py /usr/local/bin, tajusin ettei skripti enää toiminut. Ilmeisesti se ei osannut enää hakea mitä vain pythonia, vaan sille piti määrätä tietty versio. Tässä tapauksessa python3.
 
 > #!/usr/bin/python
@@ -111,8 +111,9 @@ Lähetetään orjakoneille uudet tilat joita ylläpitää:
 
 Kirjauduin sisään t001 koneelle ja ajoin heti skriptin komennolla helloworld.py.
 > helloworld.py
-Oli helppo todeta että skriptien asennus onnistui.
 
+Oli helppo todeta että skriptien asennus onnistui.
+![python script running on slave t001](screenshots/h4-python_run_slave.png)
 ## Ohjelman asennus herralle
 
 Seuraavaksi pyrin asentamaan tekstinkäsittelyohjelma Micron orjakoneille automaagisesti. Tämä käytiin luennolla läpi.
@@ -124,7 +125,7 @@ Tällä haetaan githubista haluttu versio, tämä valitaan oman käyttöjärjest
 Tiedosto täytyy purkaa, sillä se on tiivistetty (gz tiedosto).
 > tar -xf micro-2.0.11-linux64-static.tar.gz
 
-Kopioin micro-tiedoston syntyneestä kansiosta ohjelmille luotuun jakelukansioon saltin alla.
+Kopioin micro-tiedoston syntyneestä kansiosta ohjelmille luotuun jakelukansioon saltin alla sekä polkuun /usr/local/bin.
 > sudo cp ~/micro-2.1.11/micro .
 
 ## Asennus orjille
@@ -133,10 +134,17 @@ Loin ensimmäisenä oman kansion nimeltä "default-softwares" polkuun /srv/salt 
 Kansion sisälle init.sls tiedosto, ja tiedostoon seuraava:
 
 
-> > /usr/local/bin/default-softwares:
+> > /usr/local/bin/micro:
 > > 
 > >   file.managed:
 > >   
 > >     - mode: '0755'
 > >     
 > >     - source: "salt://default-softwares/micro"
+
+Jonka jälkeen ajoin sen kaikille orjille:
+
+> sudo salt '*' state.apply default-softwares
+![micro automagic](screenshots/h4-micro_installed.png)
+Siirryin orjakoneelle t001 ja ajoin komennon "micro".
+Micro käynnistyi onnistuneesti.
