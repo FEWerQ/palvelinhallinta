@@ -1,5 +1,7 @@
 # Komennot
 
+Käytän luennolla otettuja muistiinpanoja apuna.
+
 ## Skriptin luominen
 
 Ensimmäisenä harjoituksena lähdin tekemään yksinkertaista skriptiä joka lähettää pingin Helsingin Sanomien verkkosivulle.
@@ -31,4 +33,14 @@ Annetaan oikeudet suorittaa skripti kaikille. Komennossa ugo tarkoittaa U = tied
 
 > chmod ugo+x hs-ping.sh
 
+Tiedosto on nyt valmis ja sen voi kopioida käyttäjille. Polku "/usr/local/bin" on tarkoitettu ohjelmille mitä normaali käyttäjä voi ajaa. Siellä ne ovat suojassa esimerkiksi muutoksilta järjestelmäpäivityksien aikana.
+
+> sudo cp hs-ping.sh /usr/local/bin
+> cd /usr/local/bin
+> ls -l
+
+Voidaan todeta että suoritusoikeudet ovat varmasti säilyneet ja ollaan kopioitu haluttu asia.
+Jälleen on hyvä aika testata että kaikki toimii:
+
+> hs-ping.sh
 
