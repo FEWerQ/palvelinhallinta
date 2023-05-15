@@ -1,38 +1,39 @@
-Alkutilanne:
+#Alkutilanne:
 Vagrant ympäristö herralla ja neljällä orjalla. Kaikkien käyttöjärjestelmänä toimii debian bullseye/64. Host koneella ubuntu.
 Herralla on micro asennettuna tekstinkäsittelyyn.
 
-Käynnistetään vagrant ja kirjaudutaan herralle:
+###Käynnistetään vagrant ja kirjaudutaan herralle:
 Vagrant up
 vagrant ssh gamemaster
 
-luodaan tiedostoille directory ja siirrytään sinne:
+###luodaan tiedostoille directory ja siirrytään sinne:
 cd /srv
 sudo mkdir salt
 cd salt
 
-ladataan deb tiedosto steam asennusta varten:
+###ladataan deb tiedosto steam asennusta varten:
 sudo wget ” https://repo.steampowered.com/steam/archive/stable/steam_latest.deb”
 
-luodaan sls tiedosto samaan juureen jolla myöhemmin asennamme kaiken orjille:
+###luodaan sls tiedosto samaan juureen jolla myöhemmin asennamme kaiken orjille:
 micro installSteam.sls
 
-Sisälle seuraava:
+##SLS tiedoston sisältö:
 asdasd
 
-varmistetaan tiedostoille käyttöoikeudet
+###varmistetaan tiedostoille käyttöoikeudet
 sudo chmod ugo+x steam_latest.deb
 sudo chmod ugo+x installSteam.sls
 
-Ajetaan SLS tiedosto testinä ensin yhdelle orjakoneelle:
+###Ajetaan SLS tiedosto testinä ensin yhdelle orjakoneelle:
 sudo salt 'lanPC02' state.apply installSteam
 
-Komennolla steam kokeilin onko asennus onnistunut.
+###Komennolla steam kokeilin onko asennus onnistunut.
 sudo salt 'lanPC02' cmd.run 'steam'
 
-Virhe johtuu ilmeisesti siitä että X11 ei onnistu käyttämään näyttöä, yritin korjata tilanteen asentamalla manuaalisesti käyttäen ohjeita Debian Wikistä (https://wiki.debian.org/Xorg)
+###Virhe johtuu ilmeisesti siitä että X11 ei onnistu käyttämään näyttöä, yritin korjata tilanteen asentamalla manuaalisesti käyttäen ohjeita Debian Wikistä (https://wiki.debian.org/Xorg)
 sudo salt 'lanPC02' cmd.run 'sudo apt install -y xorg'
 sudo salt 'lanPC02' cmd.run 'sudo apt update && sudo apt upgrade -y'
 sudo salt 'lanPC02' cmd.run 'reboot'
 
-Virhe toistui, ja en saanut tilannetta korjattua.
+###Virhe toistui, ja en saanut tilannetta korjattua.
+Epäilen virheen johtuvan virtualisoinnin tuomista ongelmista.
