@@ -18,19 +18,25 @@ sudo wget ” https://repo.steampowered.com/steam/archive/stable/steam_latest.de
 micro installSteam.sls
 
 ## SLS tiedoston sisältö:
-asdasd
+![installSteal.sls](screenshots/h7_installSteamSLS.png)
 
 ### varmistetaan tiedostoille käyttöoikeudet
 sudo chmod ugo+x steam_latest.deb
 sudo chmod ugo+x installSteam.sls
+![chmod](screenshots/h7_wget.png)
 
 ### Ajetaan SLS tiedosto testinä ensin yhdelle orjakoneelle:
 sudo salt 'lanPC02' state.apply installSteam
+![steam install](screenshots/h7_steam_asennus.png)
+
+## Virhe
 
 ### Komennolla steam kokeilin onko asennus onnistunut.
 sudo salt 'lanPC02' cmd.run 'steam'
 
-### Virhe johtuu ilmeisesti siitä että X11 ei onnistu käyttämään näyttöä, yritin korjata tilanteen asentamalla manuaalisesti käyttäen ohjeita Debian Wikistä (https://wiki.debian.org/Xorg)
+![steam virhe](screenshots/h7_virhe_toistuu.png)
+
+Virhe johtuu ilmeisesti siitä että X11 ei onnistu käyttämään näyttöä, yritin korjata tilanteen asentamalla manuaalisesti käyttäen ohjeita Debian Wikistä (https://wiki.debian.org/Xorg)
 sudo salt 'lanPC02' cmd.run 'sudo apt install -y xorg'
 sudo salt 'lanPC02' cmd.run 'sudo apt update && sudo apt upgrade -y'
 sudo salt 'lanPC02' cmd.run 'reboot'
