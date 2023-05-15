@@ -1,4 +1,6 @@
-# Alkutilanne:
+# Steam asennus herra orja arkkitehtuurilla useille tietokoneille
+
+## Alkutilanne:
 Vagrant ympäristö herralla ja neljällä orjalla. Kaikkien käyttöjärjestelmänä toimii debian bullseye/64. Host koneella ubuntu.
 Herralla on micro asennettuna tekstinkäsittelyyn.
 ![kuvakaappaus versiosta](screenshots/01-01-versio.png)
