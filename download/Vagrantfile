@@ -1,0 +1,49 @@
+# -*- mode: ruby -*-
+# vi: set ft=ruby :
+
+$minion = <<MINION
+sudo apt-get update
+sudo apt-get -qy install salt-minion
+echo "master: 192.168.56.3">/etc/salt/minion
+sudo service salt-minion restart
+MINION
+
+$master = <<MASTER
+sudo apt-get update
+sudo apt-get -qy install salt-master
+MASTER
+
+Vagrant.configure("2") do |config|
+	config.vm.box = "debian/bullseye64"
+	
+		
+	config.vm.define "lanPC01" do |lanPC01|
+		lanPC01.vm.provision :shell, inline: $minion
+		lanPC01.vm.network "private_network", ip: "192.168.56.101"
+		lanPC01.vm.hostname = "lanPC01"
+	end
+
+	config.vm.define "lanPC02" do |lanPC02|
+		lanPC02.vm.provision :shell, inline: $minion
+		lanPC02.vm.network "private_network", ip: "192.168.56.102"
+		lanPC02.vm.hostname = "lanPC02"
+	end
+
+	config.vm.define "lanPC03" do |lanPC03|
+		lanPC03.vm.provision :shell, inline: $minion
+		lanPC03.vm.network "private_network", ip: "192.168.56.103"
+		lanPC03.vm.hostname = "lanPC03"
+	end
+
+	config.vm.define "lanPC04" do |lanPC04|
+		lanPC04.vm.provision :shell, inline: $minion
+		lanPC04.vm.network "private_network", ip: "192.168.56.104"
+		lanPC04.vm.hostname = "lanPC04"
+	end
+
+	config.vm.define "gameMaster", primary: true do |gameMaster|
+		gameMaster.vm.provision :shell, inline: $master
+		gameMaster.vm.network "private_network", ip: "192.168.56.3"
+		gameMaster.vm.hostname = "gameMaster"
+	end
+end
