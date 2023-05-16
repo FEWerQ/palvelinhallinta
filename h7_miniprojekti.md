@@ -1,6 +1,6 @@
 # Steam asennus herra orja arkkitehtuurilla useille tietokoneille
 
-[![](https://s18955.pcdn.co/wp-content/uploads/2018/02/github.png)]([https://github.com/user/repository/subscription](https://github.com/FEWerQ/palvelinhallinta/blob/d76ed99c9c085f2766644a3aa4d46860361fe3ea/download.zip))
+Voit ladata zip tiedoston täältä: [download.zip](https://github.com/FEWerQ/palvelinhallinta/blob/d76ed99c9c085f2766644a3aa4d46860361fe3ea/download.zip).
 
 ## Alkutilanne:
 Vagrant ympäristö herralla ja neljällä orjalla. Kaikkien käyttöjärjestelmänä toimii debian bullseye/64. Host koneella ubuntu.
