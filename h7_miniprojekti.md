@@ -1,9 +1,11 @@
 # Steam asennus herra orja arkkitehtuurilla useille tietokoneille
 [Download files](https://github.com/FEWerQ/palvelinhallinta/tree/b883d67aa7f3d5985d746afa1c2b259d4e9f10c1/download)
+
 ## Alkutilanne:
 Vagrant ympäristö herralla ja neljällä orjalla. Kaikkien käyttöjärjestelmänä toimii debian bullseye/64. Host koneella ubuntu.
 Herralla on micro asennettuna tekstinkäsittelyyn.
 ![kuvakaappaus versiosta](screenshots/01-01-versio.png)
+
 ### Käynnistetään vagrant ja kirjaudutaan herralle:
 > Vagrant up
 > 
