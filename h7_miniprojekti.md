@@ -52,4 +52,4 @@ Virhe johtuu ilmeisesti siitä että X11 ei onnistu käyttämään näyttöä, y
 > sudo salt 'lanPC02' cmd.run 'reboot'
 
 ### Virhe toistui, ja en saanut tilannetta korjattua.
-Epäilen virheen johtuvan virtualisoinnin tuomista ongelmista.
+Virheen johtuu virtualisoinnin tuomista ongelmista.
